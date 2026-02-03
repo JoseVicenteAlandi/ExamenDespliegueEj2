@@ -2,17 +2,34 @@ services:
   db:
     image: uche21/sqlpinacoteca:v1
     container_name: unruffled_davinci
-    environment:
-      MYSQL_ROOT_PASSWORD: pinacoteca1234
-      MYSQL_DATABASE: pinacoteca
-      MYSQL_USER: davinci
-      MYSQL_PASSWORD: davinci1234
     ports:
-      - "3308:3306"
-  php:
-    image: uche21/pinacoteca:v1
-    container_name: phppinacoteca
+      - "3306:3306"
+    networks:
+      - mi-red
+
+  app:
+    image: uche21/sqlpinacoteca:v1
+    container_name: unruffled_davinci
     ports:
       - "8080:80"
     depends_on:
       - db
+    networks:
+      - mi-red
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: contenedorPhpMyAdmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: contrasenyaRoot
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - mi-red
+
+networks:
+  mi-red:
+    driver: bridge
