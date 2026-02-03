@@ -1,10 +1,10 @@
-FROM mysql:8.0
+FROM mysql:latest
 
-ENV MYSQL_ROOT_PASSWORD=contrasenyaRoot
+ENV MYSQL_ROOT_PASSWORD=pinacoteca1234
+
 ENV MYSQL_DATABASE=pinacoteca
-ENV MYSQL_USER=usuario1
-ENV MYSQL_PASSWORD=contrasenyaUsuario1
 
-COPY init.sql /docker-entrypoint-initdb.d/
+ENV MYSQL_USER=davinci
 
-EXPOSE 3306
+ENV MYSQL_PASSWORD=davinci1234
+COPY pinacoteca.sql /docker-entrypoint-initdb.d/

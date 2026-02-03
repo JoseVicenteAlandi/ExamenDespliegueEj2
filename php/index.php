@@ -1,8 +1,8 @@
 <?php
 
-$servername = "localhost";
+$servername = "db";
 $username = "root";
-$password = "";
+$password = "pinacoteca1234";
 $dbname = "pinacoteca";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $id = intval($_POST['delete_id']);
     $sql = "DELETE FROM cuadros WHERE id = $id";
-    $conn->query($sql);
-}
+    $conn->query($sql); 
+} 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_cuadro'])) {
     $nombre = $conn->real_escape_string($_POST['nombre']);
